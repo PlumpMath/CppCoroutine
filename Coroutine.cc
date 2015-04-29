@@ -57,12 +57,12 @@ struct Coroutine::Data {
 		}
 	}
 
-	void* yield(void* ret) {
+	void* yield(void* val) {
 		current_ = nullptr;
 		switch (status_) {
 			case RUNNING:
 				status_ = SUSPENDED;
-				ret = ret;
+				ret = val;
 				context_swap(&context, &caller);
 				return ret;
 			default:
