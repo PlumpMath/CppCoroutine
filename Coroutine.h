@@ -17,22 +17,30 @@ class Coroutine {
 		STOPPED
 	};
   private:
-	static Coroutine* current_;
+	struct Data;
+  private:
+	static Data* current_;
 
   public:
 	static void* yield(void* ret = nullptr);
-	static Coroutine& current();
+	static Coroutine current();
   private:
-	context_t caller;
-	context_t context;
-	std::function<void*(void*)> func;
-	Status status = READY;
-	void* ret;
-	void* stack;
+	Data* data;
+
+  private:
+	Coroutine(Data*);
 
   public:
+	Coroutine();
+	Coroutine(Coroutine&&);
+	Coroutine(const Coroutine&);
 	Coroutine(std::function<void*(void*)> func);
 	~Coroutine();
+
+	void operator =(Coroutine&&);
+	void operator =(const Coroutine&);
+
+	Status status();
 	void* resume(void* val = nullptr);
 	void stop(void* val = nullptr);
 };
