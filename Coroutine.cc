@@ -98,6 +98,9 @@ void* Coroutine::Data::resume(void* val) {
 }
 
 void* Coroutine::yield(void* ret) {
+	if (!current_) {
+		throw std::runtime_error{ "No coroutine is currently running" };
+	}
 	return current_->yield(ret);
 }
 
@@ -143,9 +146,6 @@ void Coroutine::operator=(const Coroutine& c) {
 }
 
 Coroutine::Status Coroutine::status() {
-	if (!data) {
-		throw std::runtime_error{"Invoke status on null"};
-	}
 	return data->status_;
 }
 
