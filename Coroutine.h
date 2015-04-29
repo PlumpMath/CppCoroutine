@@ -40,9 +40,10 @@ class Coroutine {
 	void operator =(Coroutine&&);
 	void operator =(const Coroutine&);
 
-	Status status();
-	void* resume(void* val = nullptr);
+	bool empty();
 	void stop(void* val = nullptr);
+	void* resume(void* val = nullptr);
+	Status status();
 };
 
 }

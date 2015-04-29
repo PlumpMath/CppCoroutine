@@ -109,7 +109,8 @@ Coroutine Coroutine::current() {
 }
 
 Coroutine::Coroutine(Data* data) : data(data) {
-	data->increaseReferenceCount();
+	if (data)
+		data->increaseReferenceCount();
 }
 
 Coroutine::Coroutine() : data{nullptr} {
@@ -142,7 +143,12 @@ void Coroutine::operator=(Coroutine&& c) {
 void Coroutine::operator=(const Coroutine& c) {
 	this->~Coroutine();
 	data = c.data;
-	data->increaseReferenceCount();
+	if (data)
+		data->increaseReferenceCount();
+}
+
+bool Coroutine::empty() {
+	return data == nullptr;
 }
 
 Coroutine::Status Coroutine::status() {
