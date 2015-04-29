@@ -2,6 +2,8 @@
 #define NORLIT_COROUTINE_CONTEXT_H
 
 #ifdef __cplusplus
+namespace norlit {
+namespace coroutine {
 extern "C" {
 #endif
 
@@ -92,6 +94,8 @@ void context_setstack(context_t* cor, void* ptr, size_t size);
 void context_setip(context_t* cor, void(*func)(void));
 
 #ifdef __cplusplus
+}
+}
 }
 #endif
 

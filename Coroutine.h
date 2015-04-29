@@ -1,3 +1,6 @@
+#ifndef NORLIT_COROUTINE_COROUTINE_H
+#define NORLIT_COROUTINE_COROUTINE_H
+
 #include <functional>
 
 #include "context.h"
@@ -37,3 +40,4 @@ class Coroutine {
 }
 }
 
+#endif
