@@ -39,6 +39,7 @@ Coroutine::~Coroutine() {
 }
 
 void* Coroutine::resume(void* val) {
+	Coroutine* currentBackup = current_;
 	current_ = this;
 	switch (status) {
 		case READY:
@@ -46,6 +47,7 @@ void* Coroutine::resume(void* val) {
 			status = RUNNING;
 			ret = val;
 			context_swap(&caller, &context);
+			current_ = currentBackup;
 			break;
 		default:
 			throw std::logic_error{"Unexpected status of coroutine"};
