@@ -12,24 +12,24 @@ API Reference
 The main class is norlit::coroutine::Coroutine.
 The norlit::coroutine::context_t and series of functions are available if you want to use low-level ucontext-like functions.
 
-| Member Function | Signature                                 | Description
-|-----------------|-------------------------------------------|-------------
-| (constructor)   | Coroutine()                               | Initialize a empty instance that refers to no coroutine
-| (constructor)   | Coroutine(Coroutine&&)                    | Move constructor; original Coroutine will refer to no coroutine
-| (constructor)   | Coroutine(const Coroutine&)               | Copy constructor; two Coroutine instances refer to the same coroutine
-| (constructor)   | Coroutine(std::function&lt;void*(void*)>) | Create a new oroutine with given function
-| (destructor)    | ~Coroutine()                              | Delete the coroutine if it is pointed by none of the Coroutine instance
-| operator =      | void(Coroutine&&)                         | Reassign the current Coroutine instance
-| operator =      | void(const Coroutine&)                    | Reassign the current Coroutine instance
-| empty           | bool()                                    | Test whether a coroutine is retained by the current Coroutine instance
-| stop            | void*(void* = nullptr)                    | Force the coroutine to stop. not really recommended to use.
-| resume          | void*(void* = nullptr)                    | Resume/Start the coroutine
-| status          | Coroutine::Status()                       | Get the status of coroutine
+| Member Function | Signature                                   | Description
+|-----------------|---------------------------------------------|-------------
+| (constructor)   | Coroutine()                                 | Initialize a empty instance that refers to no coroutine
+| (constructor)   | Coroutine(Coroutine&&)                      | Move constructor; original Coroutine will refer to no coroutine
+| (constructor)   | Coroutine(const Coroutine&)                 | Copy constructor; two Coroutine instances refer to the same coroutine
+| (constructor)   | Coroutine(std::function&lt;void\*(void\*)>) | Create a new oroutine with given function
+| (destructor)    | ~Coroutine()                                | Delete the coroutine if it is pointed by none of the Coroutine instance
+| operator =      | void(Coroutine&&)                           | Reassign the current Coroutine instance
+| operator =      | void(const Coroutine&)                      | Reassign the current Coroutine instance
+| empty           | bool()                                      | Test whether a coroutine is retained by the current Coroutine instance
+| stop            | void\*(void\* = nullptr)                    | Force the coroutine to stop. not really recommended to use.
+| resume          | void\*(void\* = nullptr)                    | Resume/Start the coroutine
+| status          | Coroutine::Status()                         | Get the status of coroutine
 
-| Static Function | Signature                                 | Description
-|-----------------|-------------------------------------------|-------------
-| yield           | void*(void* = nullptr)                    | Yield the current coroutine
-| current         | Coroutine()                               | Get the running coroutine
+| Static Function | Signature                                   | Description
+|-----------------|---------------------------------------------|-------------
+| yield           | void\*(void\* = nullptr)                    | Yield the current coroutine
+| current         | Coroutine()                                 | Get the running coroutine
 
 | Enumeration     | Description
 |-----------------|-------------
