@@ -2,6 +2,7 @@
 #define NORLIT_COROUTINE_COROUTINE_H
 
 #include <functional>
+#include <exception>
 
 #include "context.h"
 
@@ -23,7 +24,13 @@ class Coroutine {
 
   public:
 	static void* yield(void* ret = nullptr);
+	static void* yield_throw(std::exception_ptr ex);
 	static Coroutine current();
+
+	template<typename T>
+	static void* yield_throw(T t) {
+		return yield_throw(std::make_exception_ptr(std::move(t)));
+	}
   private:
 	Data* data;
 
@@ -43,7 +50,13 @@ class Coroutine {
 	bool empty();
 	void stop(void* val = nullptr);
 	void* resume(void* val = nullptr);
+	void* throw_exception(std::exception_ptr ex);
 	Status status();
+
+	template<typename T>
+	void* throw_exception(T t) {
+		return throw_exception(std::make_exception_ptr(std::move(t)));
+	}
 };
 
 }

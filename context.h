@@ -1,14 +1,14 @@
 #ifndef NORLIT_COROUTINE_CONTEXT_H
 #define NORLIT_COROUTINE_CONTEXT_H
 
+#include <stdint.h>
+#include <stddef.h>
+
 #ifdef __cplusplus
 namespace norlit {
 namespace coroutine {
 extern "C" {
 #endif
-
-#include <stdint.h>
-#include <stddef.h>
 
 #define NORLIT_ABI_CDECL 0
 #define NORLIT_ABI_WIN64 1
