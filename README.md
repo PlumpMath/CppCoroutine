@@ -5,6 +5,8 @@ Consist of only 4 file (1 .c, 1 .cc and 2 .h files)
 
 Supported platform and compiler are linux/windows compiled via gcc/clang/visual c++ targeted on x86 or x64 devices.
 
+This is designed for single-threaded programs; using coroutine in multiple threads at the same time is not supported currently
+
 A example of using this (implementation of async/await and promise) can be found at https://gist.github.com/nbdd0121/0c739ca139d58ae12290
 
 API Reference
