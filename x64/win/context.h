@@ -1,0 +1,26 @@
+typedef struct {
+	uint64_t rbx;
+	uint64_t rsp;
+	uint64_t rbp;
+	uint64_t rsi;
+	uint64_t rdi;
+	uint64_t r12;
+	uint64_t r13;
+	uint64_t r14;
+	uint64_t r15;
+	uint64_t rip;
+	uint64_t xmm6[2];
+	uint64_t xmm7[2];
+	uint64_t xmm8[2];
+	uint64_t xmm9[2];
+	uint64_t xmm10[2];
+	uint64_t xmm11[2];
+	uint64_t xmm12[2];
+	uint64_t xmm13[2];
+	uint64_t xmm14[2];
+	uint64_t xmm15[2];
+	uint64_t stack_top;
+	uint64_t stack_bottom;
+	uint32_t mxcsr;
+	uint32_t x87_control;
+} context_t;
