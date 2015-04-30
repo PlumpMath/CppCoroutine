@@ -32,12 +32,12 @@ class Coroutine {
 
   public:
 	Coroutine();
-	Coroutine(Coroutine&&);
+	Coroutine(Coroutine&&) throw();
 	Coroutine(const Coroutine&);
 	Coroutine(std::function<void*(void*)> func);
 	~Coroutine();
 
-	void operator =(Coroutine&&);
+	void operator =(Coroutine&&) throw();
 	void operator =(const Coroutine&);
 
 	bool empty();

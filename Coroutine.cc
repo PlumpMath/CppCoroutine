@@ -16,7 +16,7 @@ struct Coroutine::Data {
 	void* stack = nullptr;
 	int refCount = 0;
 
-	Data(std::function<void*(void*)> func) : func(func) {
+	Data(std::function<void*(void*)>&& func) : func{ std::move(func) } {
 		stack = malloc(65536);
 		context_get(&context);
 		context_setstack(&context, stack, 65536);
@@ -113,11 +113,11 @@ Coroutine::Coroutine(Data* data) : data(data) {
 		data->increaseReferenceCount();
 }
 
-Coroutine::Coroutine() : data{nullptr} {
+Coroutine::Coroutine() : data{ nullptr } {
 
 }
 
-Coroutine::Coroutine(Coroutine&& c) : data{ c.data } {
+Coroutine::Coroutine(Coroutine&& c) throw() : data {c.data} {
 	c.data = nullptr;
 }
 
@@ -125,7 +125,7 @@ Coroutine::Coroutine(const Coroutine& c) : Coroutine{ c.data } {
 
 }
 
-Coroutine::Coroutine(std::function<void*(void*)> func) : Coroutine{ new Data{ func } } {
+Coroutine::Coroutine(std::function<void*(void*)> func) : Coroutine{ new Data{ std::move(func) } } {
 
 }
 
@@ -135,7 +135,7 @@ Coroutine::~Coroutine() {
 	}
 }
 
-void Coroutine::operator=(Coroutine&& c) {
+void Coroutine::operator=(Coroutine&& c) throw() {
 	data = c.data;
 	c.data = nullptr;
 }
@@ -157,7 +157,7 @@ Coroutine::Status Coroutine::status() {
 
 void* Coroutine::resume(void* val) {
 	if (!data) {
-		throw std::runtime_error{"Invoke resume on null"};
+		throw std::runtime_error{ "Invoke resume on null" };
 	}
 	return data->resume(val);
 }
